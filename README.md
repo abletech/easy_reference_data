@@ -23,16 +23,22 @@ Place references in 'db/reference/'
 References will be loaded in ascending order, so if an order is desired, prepend 000, 001, 002... etc to the filename.
 
 Run with:
-    rake easy:reference_data:load
+    rake easy:reference_data:refresh
+
+## Deployment
+
+Add this line to your application's deploy.rb file:
+
+    require 'easy/reference_data/capistrano'
 
 ## Example
 
 The below example ensures that there are 3 users existing in the database after running the 'rake reference_data:load'
 
-### db/reference/000_users.rb
-Easy::ReferenceData.refresh User, :system_code, 'nigel', name: 'Nigel Ramsay', email: 'nigel.ramsay@mailinator.com'
-Easy::ReferenceData.refresh User, :system_code, 'fred', name: 'Fred Schmitt', email: 'fred.schmitt@mailinator.com'
-Easy::ReferenceData.refresh User, :system_code, 'bert', name: 'Bert Symthe', email: 'bert.smythe@mailinator.com'
+    ### db/reference/000_users.rb
+    Easy::ReferenceData.refresh User, :system_code, 'nigel', name: 'Nigel Ramsay', email: 'nigel.ramsay@mailinator.com'
+    Easy::ReferenceData.refresh User, :system_code, 'fred', name: 'Fred Schmitt', email: 'fred.schmitt@mailinator.com'
+    Easy::ReferenceData.refresh User, :system_code, 'bert', name: 'Bert Symthe', email: 'bert.smythe@mailinator.com'
 
 ## Contributing
 
