@@ -12,7 +12,7 @@ Capistrano::Configuration.instance(:must_exist).load do
                     else raise ArgumentError, "unknown migration target #{migrate_target.inspect}"
                     end
         
-        run "cd #{directory} && RAILS_ENV=#{rails_env} bundle exec rake easy:reference_data:load"
+        run "cd #{directory} && RAILS_ENV=#{rails_env} bundle exec rake easy:reference_data:refresh"
       end
     end
   end
