@@ -12,7 +12,7 @@ module Easy
       end
 
       if record.new_record?
-        puts "  new #{clazz}(#{unique_attribute_value})"
+        puts "  creating #{clazz}(#{unique_attribute_value})"
       elsif record.changed?
         puts "  updating #{clazz}(#{unique_attribute_value})"
       end
