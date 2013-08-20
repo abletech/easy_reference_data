@@ -23,6 +23,7 @@ Place references in 'db/reference/'
 References will be loaded in ascending order, so if an order is desired, prepend 000, 001, 002... etc to the filename.
 
 Run with:
+
     rake easy:reference_data:refresh
 
 ## Deployment
