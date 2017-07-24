@@ -37,9 +37,16 @@ Add this line to your application's deploy.rb file:
 The below example ensures that there are 3 users existing in the database after running the 'rake reference_data:load'
 
     ### db/reference/000_users.rb
-    Easy::ReferenceData.refresh User, :system_code, 'nigel', name: 'Nigel Ramsay', email: 'nigel.ramsay@mailinator.com'
-    Easy::ReferenceData.refresh User, :system_code, 'fred', name: 'Fred Schmitt', email: 'fred.schmitt@mailinator.com'
-    Easy::ReferenceData.refresh User, :system_code, 'bert', name: 'Bert Symthe', email: 'bert.smythe@mailinator.com'
+    Easy::ReferenceData.update_or_create User, system_code: 'nigel', name: 'Nigel Ramsay', email: 'nigel.ramsay@mailinator.com', keys: [:system_code]
+    Easy::ReferenceData.update_or_create User, system_code: 'fred', name: 'Fred Schmitt', email: 'fred.schmitt@mailinator.com', keys: [:system_code]
+    Easy::ReferenceData.update_or_create User, system_code: 'bert', name: 'Bert Symthe', email: 'bert.smythe@mailinator.com', keys: [:system_code]
+
+Multiple keys can be used to identify records that would otherwise not have a unique attribute
+
+    ### db/reference/000_prices.rb
+    Easy::ReferenceData.update_or_create Price, product_id: 1, type: "Price::RetailPrice", price: 5, keys: [:product_id, :type]
+    Easy::ReferenceData.update_or_create Price, product_id: 1, type: "Price::CostPrice", price: 4, keys: [:product_id, :type]
+    Easy::ReferenceData.update_or_create Price, product_id: 2, type: "Price::RetailPrice", price: 5, keys: [:product_id, :type]
 
 ## Contributing
 
