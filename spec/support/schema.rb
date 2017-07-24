@@ -1,5 +1,4 @@
 require 'active_record'
-require 'benchmark'
 
 ActiveRecord::Schema.define do
   self.verbose = false
@@ -8,6 +7,5 @@ ActiveRecord::Schema.define do
     t.integer :system_code
     t.string :name
     t.string :email
-    t.timestamps
   end
 end
