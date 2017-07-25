@@ -12,15 +12,15 @@ module Easy
       record = clazz.where(attributes.slice(*unique_attribute_keys)).first_or_initialize
 
       if record.new_record?
-        puts "..creating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
+        $stderr.puts "..creating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
       else
-        puts "..updating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
+        $stderr.puts "..updating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
       end
 
       begin
         record.update_attributes!(attributes)
       rescue
-        puts "Save failed for #{record.class} with attributes #{attributes.inspect}"
+        $stderr.puts "Save failed for #{record.class} with attributes #{attributes.inspect}"
         raise
       end
 
