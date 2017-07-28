@@ -1,31 +1,31 @@
+require 'active_support'
+
 module Easy
   module ReferenceData
     def self.refresh(clazz, unique_attribute_symbol, unique_attribute_value, attributes)
-      record = clazz.where(unique_attribute_symbol => unique_attribute_value).first
+      self.update_or_create(clazz, attributes.merge(unique_attribute_symbol => unique_attribute_value), keys: [unique_attribute_symbol])
+    end
 
-      if record.nil?
-        record = clazz.new
-        record.send "#{unique_attribute_symbol}=", unique_attribute_value
-      end
+    def self.update_or_create(clazz, attributes, options)
+      unique_attribute_keys = options.fetch(:keys)
 
-      attributes.each_pair do |key, value|
-        record.send "#{key}=", value
-      end
+      record = clazz.where(attributes.slice(*unique_attribute_keys)).first_or_initialize
 
       if record.new_record?
-        puts "..creating #{clazz}(#{unique_attribute_value})"
-      elsif record.changed?
-        puts "..updating #{clazz}(#{unique_attribute_value})"
+        $stderr.puts "..creating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
+      else
+        $stderr.puts "..updating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
       end
 
       begin
-        record.save!
+        record.update_attributes!(attributes)
       rescue
-        puts "Save failed for #{record.class}[#{unique_attribute_symbol}: #{unique_attribute_value}] with attributes #{attributes.inspect}"
+        $stderr.puts "Save failed for #{record.class} with attributes #{attributes.inspect}"
         raise
       end
 
       record
     end
+
   end
 end
