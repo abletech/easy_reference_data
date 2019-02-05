@@ -70,4 +70,53 @@ RSpec.describe Easy::ReferenceData do
     end
 
   end
+
+  describe ".load_files" do
+    before do
+      allow(subject).to receive(:files).and_return([@file1 = double(to_str: "easy/reference_data/refresh.rb")])
+    end
+
+    context "when the wrap_in_transaction argument is true" do
+      let(:call) {subject.load_files(wrap_in_transaction: true)}
+
+      it "starts a transaction" do
+        expect(ActiveRecord::Base).to receive(:transaction).and_call_original
+        call
+      end
+
+      it "loads the files" do
+        allow(Kernel).to receive(:load).with(@file1)
+        call
+      end
+
+    end
+
+    context "when the wrap_in_transaction argument is false" do
+      let(:call) {subject.load_files(wrap_in_transaction: false)}
+
+      it "does not start a transaction" do
+        expect(ActiveRecord::Base).not_to receive(:transaction)
+        call
+      end
+
+      it "loads the files" do
+        allow(Kernel).to receive(:load).with(@file1)
+        call
+      end
+    end
+
+    context "if the wrap_in_transaction argument is not passed in" do
+      let(:call) {subject.load_files}
+
+      it "does not start a transaction" do
+        expect(ActiveRecord::Base).not_to receive(:transaction)
+        call
+      end
+
+      it "loads the files" do
+        allow(Kernel).to receive(:load).with(@file1)
+        call
+      end
+    end
+  end
 end

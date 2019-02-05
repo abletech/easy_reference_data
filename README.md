@@ -26,6 +26,10 @@ Run with:
 
     rake easy:reference_data:refresh
 
+To have all the reference data files loaded in one transaction, run with:
+
+    rake easy:reference_data:refresh[wrap_in_transaction]
+
 ## Deployment
 
 Add this line to your application's deploy.rb file:
