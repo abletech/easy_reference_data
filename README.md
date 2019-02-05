@@ -22,9 +22,17 @@ Place references in 'db/reference/'
 
 References will be loaded in ascending order, so if an order is desired, prepend 000, 001, 002... etc to the filename.
 
+If an unhandled error occurs during the loading of a specific file, then all the data loaded prior to the error will remain.
+
 Run with:
 
     rake easy:reference_data:refresh
+
+To have all the reference data files loaded in one transaction, run with:
+
+    rake easy:reference_data:refresh[wrap_in_transaction]
+
+The `wrap_in_transaction` parameter will wrap the entire load process in a single transaction. This means any unhandled errors will result in all the data loaded prior to the error being rolled back.  
 
 ## Deployment
 
