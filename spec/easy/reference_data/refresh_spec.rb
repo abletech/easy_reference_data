@@ -84,7 +84,7 @@ RSpec.describe Easy::ReferenceData do
         call
       end
 
-      it "loads the files" do
+      it "loads all the files" do
         allow(Kernel).to receive(:load).with(@file1)
         call
       end
@@ -99,7 +99,7 @@ RSpec.describe Easy::ReferenceData do
         call
       end
 
-      it "loads the files" do
+      it "loads all the files" do
         allow(Kernel).to receive(:load).with(@file1)
         call
       end
@@ -113,7 +113,7 @@ RSpec.describe Easy::ReferenceData do
         call
       end
 
-      it "loads the files" do
+      it "loads all the files" do
         allow(Kernel).to receive(:load).with(@file1)
         call
       end
