@@ -32,7 +32,7 @@ To have all the reference data files loaded in one transaction, run with:
 
     rake easy:reference_data:refresh[wrap_in_transaction]
 
-This will wrap the entire load process in a single transaction. This means any unhandled errors will result in all the data loaded prior to the error being rolled back.  
+The `wrap_in_transaction` parameter will wrap the entire load process in a single transaction. This means any unhandled errors will result in all the data loaded prior to the error being rolled back.  
 
 ## Deployment
 
