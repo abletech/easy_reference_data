@@ -19,7 +19,7 @@ module Easy
       end
 
       begin
-        record.update_attributes!(attributes)
+        record.update!(attributes)
       rescue
         $stderr.puts "Save failed for #{record.class} with attributes #{attributes.inspect}"
         raise
