@@ -1,3 +1,9 @@
+1.2.0 - 2021-05-27
+
+  Bug fixes
+
+    * Replace Rails 6.1 deprecated `update_attributes!` with `update!`
+
 1.1.0 - 2019-02-05
 
   Enhancements
