@@ -1,3 +1,9 @@
+1.2.1 - 2023-10-16
+
+  Logging tweaks
+
+    * Change logging level when records are successfully refreshed from stderr to stdout 
+
 1.2.0 - 2021-05-27
 
   Bug fixes
