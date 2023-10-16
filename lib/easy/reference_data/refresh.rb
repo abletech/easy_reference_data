@@ -13,9 +13,9 @@ module Easy
       record = clazz.where(attributes.slice(*unique_attribute_keys)).first_or_initialize
 
       if record.new_record?
-        $stderr.puts "..creating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
+        $stdout.puts "..creating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
       else
-        $stderr.puts "..updating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
+        $stdout.puts "..updating #{clazz}(#{attributes.slice(*unique_attribute_keys)})"
       end
 
       begin
